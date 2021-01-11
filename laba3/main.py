@@ -76,6 +76,9 @@ def autocorrelate(a):
 data1 = np.ravel(data1)
 cor = autocorrelate(data1)
 plt.plot(cor)
+plt.title("График 1")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.show()
 
 data2 = scipy.io.loadmat('./var2.mat')
@@ -91,7 +94,9 @@ for i in range(0, n):
         corr_matrix[i, j] = np.corrcoef(col, col2)[0, 1]
 np.set_printoptions(precision=2)
 print(corr_matrix)
-
+plt.title("График 2")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.plot(data2[:, 2], data2[:, 5], 'b.')
 plt.grid()
 plt.show()
