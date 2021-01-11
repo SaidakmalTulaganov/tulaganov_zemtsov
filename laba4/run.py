@@ -21,5 +21,8 @@ ans = kmeans(2, X)
 # отображение результатов
 print(ans)
 plt.plot(X[:,0], X[:,1], 'bx', ans[:,0], ans[:,1], 'r*', markersize=20)
+plt.title("Таблица 1")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.grid()
 plt.show()
