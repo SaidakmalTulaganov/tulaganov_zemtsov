@@ -3,52 +3,67 @@ import matplotlib.pyplot as plt
 import scipy.io
 
 a = 10
+# переменная
 print('a =', a)
 
 arr = np.array([1, 2, 3])
+# массив
 print('Массив \n', arr)
 
 arr1 = [[1], [1, 2], [1, 2, 3]]
+# матрица с заданными значениями
 print('Матрица 1 \n', arr1)
 
 arr2 = np.zeros((3, 2))
+# матрица с нулевыми значениями
 print('Матрица 2 \n', arr2)
 
 arr3 = np.ones((2, 3))
+# матрица с нулевыми значениями
 print('Матрица 3 \n', arr3)
 
 arr4 = np.ones((2, 3)) * 7
+# матрица с нулевыми значениями
 print('Матрица 4 \n', arr4)
 
 arr5 = np.random.random((2, 3))
 print('Матрица 5 \n', arr5)
 
 arr6 = np.random.randint(2, 6, (5, 5))
+# матрица со случайными целочисленными значениями
 print('Матрица 6 \n', arr6)
 
 data = np.loadtxt('./test.txt', dtype=np.int32)
+#импорт данных из файла и указываем что там целые числа
 print(data)
 
+#загрузка одномерных данных
 data1 = scipy.io.loadmat('./var5.mat')
-
 print(f'max = {data1.max()}')
 mn = np.min(data1)
+#расчет минимального
 print(mn)
 
 md = np.median(data1)
+#расчет медианы
 print(md)
 
 mo = np.mean(data1)
+#расчет среднего арифметического
 print(mo)
 
 ds = np.var(data1)
+#расчет дисперсии
 print(ds)
 
 sk = np.std(data1)
+#расчет среднеквадратичного отклонения
 print(sk)
 
 plt.plot(data1)
+#график
 plt.show()
+#значение массива, среднее значение и дисперсия на одном графике
 mean = np.mean(data1) * np.ones(len(data1))
 var = np.var(data1) * np.ones(len(data1))
 plt.plot(data1, 'b-', mean, 'r-', mean - var, 'g--', mean + var, 'g--')
@@ -69,7 +84,7 @@ def autocorrelate(a):
         cor.append(np.corrcoef(a1, a2)[0, 1])
     return np.array(cor)
 
-
+#одномерная матрица to одномерный массив затем выполняем корреляцию и строим график
 data1 = np.ravel(data1)
 cor = autocorrelate(data1)
 plt.plot(cor)
