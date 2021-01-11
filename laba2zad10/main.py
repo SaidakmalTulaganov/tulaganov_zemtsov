@@ -1,13 +1,18 @@
 import numpy as np
 
 print('Введите размер массива: \t')
-x = int(input())
+
+try:
+    x = int(input())
+except:
+    print("введите целое число")
 
 
 def generate(n):
     a = np.random.randint(0, 100, (n))
-    res = (min(a), max(a))
-    print(res)
+    res1, res2 = min(a), max(a)
+    return res1, res2
 
 
-generate(x)
+result = generate(x)
+print(result)
