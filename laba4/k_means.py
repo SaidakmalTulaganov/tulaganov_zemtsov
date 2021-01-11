@@ -3,8 +3,7 @@ import numpy as np
 
 # евклидово расстояние между двумя точками
 def dist(A, B):
-  r=math.sqrt(sum((A-B)**2))
-  return r
+  return np.sqrt(np.sum((A-B)**2))
 
 # возвращает список индексов ближайших центров по каждой точке
 def class_of_each_point(X, centers):
