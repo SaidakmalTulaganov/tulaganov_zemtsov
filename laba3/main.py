@@ -31,10 +31,7 @@ print(data)
 
 data1 = scipy.io.loadmat('./var5.mat')
 
-data1 = data1['n']
-mx = np.max(data1)
-print(mx)
-
+print(f'max = {data1.max()}')
 mn = np.min(data1)
 print(mn)
 
