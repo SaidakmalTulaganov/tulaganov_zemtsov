@@ -78,7 +78,7 @@ cor = autocorrelate(data1)
 plt.plot(cor)
 plt.show()
 
-data2 = scipy.io.loadmat(r'C:\Users\saida\Downloads\pract\03\data\ND\var2.mat')
+data2 = scipy.io.loadmat('./var2.mat')
 data2.keys()
 data2 = data2['mn']
 
