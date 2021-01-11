@@ -26,10 +26,10 @@ print('Матрица 5 \n', arr5)
 arr6 = np.random.randint(2, 6, (5, 5))
 print('Матрица 6 \n', arr6)
 
-data = np.loadtxt(r'D:\Users\saida\PycharmProjects\laba3\test.txt', dtype=np.int32)
+data = np.loadtxt('./test.txt', dtype=np.int32)
 print(data)
 
-data1 = scipy.io.loadmat(r'C:\Users\saida\Downloads\pract\03\data\1D\var5.mat')
+data1 = scipy.io.loadmat('./var5.mat')
 
 data1 = data1['n']
 mx = np.max(data1)
