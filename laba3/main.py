@@ -34,38 +34,38 @@ arr6 = np.random.randint(2, 6, (5, 5))
 print('Матрица 6 \n', arr6)
 
 data = np.loadtxt('./test.txt', dtype=np.int32)
-#импорт данных из файла и указываем что там целые числа
+# импорт данных из файла и указываем что там целые числа
 print(data)
 
-#загрузка одномерных данных
-array_var5 = scipy.io.loadmat('./var5.mat')
-array_var5 = np.ravel(array_var5['n'])
-print(np.max(array_var5))
-#расчет минимального
-print(np.min(array_var5))
+# загрузка одномерных данных
+one_dimensional = scipy.io.loadmat('./var5.mat')
+one_dimensional = np.ravel(one_dimensional['n'])
+print(np.max(one_dimensional))
+# расчет минимального
+print(np.min(one_dimensional))
 
-#расчет медианы
-print(np.median(array_var5))
+# расчет медианы
+print(np.median(one_dimensional))
 
-#расчет среднего арифметического
-print(np.mean(array_var5))
+# расчет среднего арифметического
+print(np.mean(one_dimensional))
 
-#расчет дисперсии
-print(np.var(array_var5))
+# расчет дисперсии
+print(np.var(one_dimensional))
 
-#расчет среднеквадратичного отклонения
-print(np.std(array_var5))
+# расчет среднеквадратичного отклонения
+print(np.std(one_dimensional))
 
-plt.plot(array_var5)
-#график
+plt.plot(one_dimensional)
+# график
 plt.show()
-#значение массива, среднее значение и дисперсия на одном графике
-mean = np.mean(array_var5) * np.ones(len(array_var5))
-var = np.var(array_var5) * np.ones(len(array_var5))
-plt.plot(array_var5, 'b-', mean, 'r-', mean - var, 'g--', mean + var, 'g--')
+# значение массива, среднее значение и дисперсия на одном графике
+mean = np.mean(one_dimensional) * np.ones(len(one_dimensional))
+var = np.var(one_dimensional) * np.ones(len(one_dimensional))
+plt.plot(one_dimensional, 'b-', mean, 'r-', mean - var, 'g--', mean + var, 'g--')
 plt.grid()
 plt.show()
-plt.hist(array_var5, bins=20)
+plt.hist(one_dimensional, bins=20)
 plt.grid()
 plt.show()
 
@@ -80,30 +80,29 @@ def autocorrelate(a):
         cor.append(np.corrcoef(a1, a2)[0, 1])
     return np.array(cor)
 
-#одномерная матрица to одномерный массив затем выполняем корреляцию и строим график
-cor = autocorrelate(array_var5)
+
+# одномерная матрица to одномерный массив затем выполняем корреляцию и строим график
+cor = autocorrelate(one_dimensional)
 plt.plot(cor)
-plt.title("График 1")
+plt.title("График автокорреляции")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.show()
 
-array_var2 = scipy.io.loadmat('./var2.mat')
-array_var2.keys()
-array_var2 = array_var2['mn']
+multidimensional = (scipy.io.loadmat('./var2.mat'))['mn']
 
-n = array_var2.shape[1]
+n = multidimensional.shape[1]
 corr_matrix = np.zeros((n, n))
 for i in range(0, n):
     for j in range(0, n):
-        col = array_var2[:, i]
-        col2 = array_var2[:, j]
+        col = multidimensional[:, i]
+        col2 = multidimensional[:, j]
         corr_matrix[i, j] = np.corrcoef(col, col2)[0, 1]
 np.set_printoptions(precision=2)
 print(corr_matrix)
-plt.title("График 2")
+plt.title("Точечный график автокорреляции двух столбцов")
 plt.xlabel("x")
 plt.ylabel("y")
-plt.plot(array_var2[:, 2], array_var2[:, 5], 'b.')
+plt.plot(multidimensional[:, 2], multidimensional[:, 5], 'b.')
 plt.grid()
 plt.show()
