@@ -28,7 +28,7 @@ def kmeans(k, X):
   # приписываем каждую точку к заданному классу
   curr_iteration = class_of_each_point(X, centers)
   
-  while True:
+  while (curr_iteration!=prev_iteration):
     prev_iteration = curr_iteration
     # вычисляем новые центры масс
     for i in range(k):
