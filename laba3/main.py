@@ -38,38 +38,34 @@ data = np.loadtxt('./test.txt', dtype=np.int32)
 print(data)
 
 #загрузка одномерных данных
-data1 = scipy.io.loadmat('./var5.mat')
-print(f'max = {data1.max()}')
-mn = np.min(data1)
+array_var5 = scipy.io.loadmat('./var5.mat')
+array_var5 = np.ravel(array_var5['n'])
+print(np.max(array_var5))
 #расчет минимального
-print(mn)
+print(np.min(array_var5))
 
-md = np.median(data1)
 #расчет медианы
-print(md)
+print(np.median(array_var5))
 
-mo = np.mean(data1)
 #расчет среднего арифметического
-print(mo)
+print(np.mean(array_var5))
 
-ds = np.var(data1)
 #расчет дисперсии
-print(ds)
+print(np.var(array_var5))
 
-sk = np.std(data1)
 #расчет среднеквадратичного отклонения
-print(sk)
+print(np.std(array_var5))
 
-plt.plot(data1)
+plt.plot(array_var5)
 #график
 plt.show()
 #значение массива, среднее значение и дисперсия на одном графике
-mean = np.mean(data1) * np.ones(len(data1))
-var = np.var(data1) * np.ones(len(data1))
-plt.plot(data1, 'b-', mean, 'r-', mean - var, 'g--', mean + var, 'g--')
+mean = np.mean(array_var5) * np.ones(len(array_var5))
+var = np.var(array_var5) * np.ones(len(array_var5))
+plt.plot(array_var5, 'b-', mean, 'r-', mean - var, 'g--', mean + var, 'g--')
 plt.grid()
 plt.show()
-plt.hist(data1, bins=20)
+plt.hist(array_var5, bins=20)
 plt.grid()
 plt.show()
 
@@ -85,30 +81,29 @@ def autocorrelate(a):
     return np.array(cor)
 
 #одномерная матрица to одномерный массив затем выполняем корреляцию и строим график
-data1 = np.ravel(data1)
-cor = autocorrelate(data1)
+cor = autocorrelate(array_var5)
 plt.plot(cor)
 plt.title("График 1")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.show()
 
-data2 = scipy.io.loadmat('./var2.mat')
-data2.keys()
-data2 = data2['mn']
+array_var2 = scipy.io.loadmat('./var2.mat')
+array_var2.keys()
+array_var2 = array_var2['mn']
 
-n = data2.shape[1]
+n = array_var2.shape[1]
 corr_matrix = np.zeros((n, n))
 for i in range(0, n):
     for j in range(0, n):
-        col = data2[:, i]
-        col2 = data2[:, j]
+        col = array_var2[:, i]
+        col2 = array_var2[:, j]
         corr_matrix[i, j] = np.corrcoef(col, col2)[0, 1]
 np.set_printoptions(precision=2)
 print(corr_matrix)
 plt.title("График 2")
 plt.xlabel("x")
 plt.ylabel("y")
-plt.plot(data2[:, 2], data2[:, 5], 'b.')
+plt.plot(array_var2[:, 2], array_var2[:, 5], 'b.')
 plt.grid()
 plt.show()
